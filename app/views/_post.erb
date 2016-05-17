@@ -3,9 +3,9 @@
     <div class="blog-post">
       <h5 class="blog-post-title"><a href="/users/<%= post.user.id %>/posts/<%= post.id %>"><%= post.title %></a></h5>
       <p>
-        <form role="form" id="contact-form" class="contact-form" action="/users/<%= post.user.id %>/posts/<%= post.id %>/vote" method="post">
-          <button class="glyphicon glyphicon-menu-up"></button></p>
-          <p>Upvotes: <%= post.votes.length %>
+        <form role="form" id="contact-form" class="contact-form upvote" action="/users/<%= post.user.id %>/posts/<%= post.id %>/vote" method="post">
+          <p class="upvotes"><%= post.votes.length %></p>
+          <button class="glyphicon glyphicon-menu-up"></button>
           </form>
 
             <% if post.user == current_user %>

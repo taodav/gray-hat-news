@@ -1,7 +1,5 @@
-
-
-
 <div class="container">
+  <div class="row">
   <div class="hero-unit col-md-9">
     <h3><%= @post.title %></h3>
     <p><%= @post.body %></p>
@@ -10,12 +8,13 @@
     <a href='' class="glyphicon glyphicon-remove"></a>
     <% end %>
     <small><em><%= @post.created_at %></em></small>
-    <p><%= @post.votes.length %>
-      <form role="form" id="contact-form" class="contact-form" action="/users/<%= current_user.id %>/posts/<%= @post.id %>/vote" method="post">
-        <button class="glyphicon glyphicon-menu-up"></button></form></p>
+    <form role="form" id="contact-form" class="contact-form upvote" action="/users/<%= @post.user.id %>/posts/<%= @post.id %>/vote" method="post">
+          <p class="upvotes"><%= @post.votes.length %></p>
+          <button class="glyphicon glyphicon-menu-up"></button>
+          </form>
 
       </div>
-
+      </div>
       <div class="hero-unit">
         <% @post.comments.each do |comment| %>
         <%= erb :'posts/_comments', layout: false, locals: { comment: comment } %>

@@ -37,12 +37,20 @@ end
 
 post '/users/:user_id/posts/:post_id/vote' do
   Post.find(params[:post_id]).votes.create(user_id: params[:user_id])
-  redirect "/users/#{params[:user_id]}/posts/#{params[:post_id]}"
+  if request.xhr?
+    Post.find(params[:post_id]).votes.length.to_s
+  else
+    redirect "/users/#{params[:user_id]}/posts/#{params[:post_id]}"
+  end
 end
 
 post '/users/:user_id/posts/:post_id/comments/:comment_id/vote' do
   Note.find(params[:comment_id]).votes.create(user_id: params[:user_id])
-  redirect "/users/#{params[:user_id]}/posts/#{params[:post_id]}"
+  if request.xhr?
+    Note.find(params[:comment_id]).votes.length.to_s
+  else
+    redirect "/users/#{params[:user_id]}/posts/#{params[:post_id]}"
+  end
 end
 
 delete '/users/:user_id/posts/:post_id' do
