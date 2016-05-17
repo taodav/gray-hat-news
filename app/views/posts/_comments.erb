@@ -1,0 +1,20 @@
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-md-9">
+      <p><%= comment.text %></p>
+      <small><em>by <a href="/users/<%= comment.user.id %>"><%= comment.user.username %></a>, at<%= comment.created_at %></em></small>
+      <p><%= comment.votes.length %> <form role="form" id="contact-form" class="contact-form" action="/users/<%= current_user.id %>/posts/<%= @post.id %>/comments/<%= comment.id %>/vote" method="post">
+        <button class="glyphicon glyphicon-menu-up"></button></form></p>
+      <% if comment.user == current_user %>
+      <form class="form-horizontal" action="/users/<%= comment.user.id %>/posts/<%= comment.post.id %>/comments/<%= comment.id %>" method="post">
+        <div class="form-group">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="glyphicon glyphicon-remove" type="submit"></button>
+        </div>
+      </form>
+      <% end %>
+      </div>
+    </div>
+  </div>
+

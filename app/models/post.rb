@@ -1,3 +1,8 @@
 class Post < ActiveRecord::Base
-  # Remember to create a migration!
+  has_many :comments, class_name: 'Note'
+  has_many :votes, as: :point
+  belongs_to :user
+
+  validates :title, length: { in: 2..150 }
+  validates :title, :body, presence: true
 end

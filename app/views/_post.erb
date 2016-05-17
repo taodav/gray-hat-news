@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-sm-8 blog-main">
+    <div class="blog-post">
+      <h5 class="blog-post-title"><a href="/users/<%= post.user.id %>/posts/<%= post.id %>"><%= post.title %></a></h5>
+      <p>
+        <form role="form" id="contact-form" class="contact-form" action="/users/<%= post.user.id %>/posts/<%= post.id %>/vote" method="post">
+          <button class="glyphicon glyphicon-menu-up"></button></p>
+          <p>Upvotes: <%= post.votes.length %>
+          </form>
+
+            <% if post.user == current_user %>
+            <form class="form-horizontal" action="/users/<%= post.user.id %>/posts/<%= post.id %>" method="post">
+              <div class="form-group">
+                <div>
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button class="glyphicon glyphicon-remove" type="submit"></button>
+                </div>
+              </div>
+            </form>
+            <% end %>
+
+          </p>
+          <p class="blog-post-meta"><%= post.created_at %> by <a href="/users/<%= post.user.id %>"><%= post.user.username %></a></p><br>
+        </div>
+      </div>
+    </div>

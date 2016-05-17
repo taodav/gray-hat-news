@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
   -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="/css/normalize.css">
   <!--
     application.css is where you put your styles
@@ -17,7 +26,31 @@
 
   <title></title>
 </head>
-<body>
+  <body>
+
+    <div class="container">
+      <div class="header clearfix col-md-12">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="/">Home</a></li>
+            <li role="presentation"><a href="#">Most Popular</a></li>
+
+            <% if current_user %>
+             <li role="presentation"><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></li>
+            <li role="presentation"><a href="/users/<%= current_user.id %>/posts/new">New Post</a></li>
+            <li role="presentation"><a href="/users/<%= current_user.id %>/edit">Profile</a></li>
+            <li role="presentation"><a href="/sessions/<%= current_user.id %>">Logout</a></li>
+
+            <% else %>
+            <li role="presentation"><a href="/users/new">Register</a></li>
+            <li role="presentation"><a href="/sessions/new">Login</a></li>
+            <% end %>
+
+          </ul>
+        </nav>
+        <h3 class="text-muted">Gray-Hat News</h3>
+      </div>
   <%= yield %>
+  </div>
 </body>
 </html>

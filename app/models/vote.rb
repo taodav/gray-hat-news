@@ -1,3 +1,4 @@
 class Vote < ActiveRecord::Base
-  # Remember to create a migration!
+  belongs_to :point, polymorphic: true
+  belongs_to :user
 end

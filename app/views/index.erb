@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="blog-header">
+    <p class="lead blog-description">Sorting from newest (DESC)</p>
+  </div>
+  <% @posts.reverse.each do |post| %>
+    <%= erb :'_post', layout: false, locals: { post: post } %>
+  <% end %>
+</div>

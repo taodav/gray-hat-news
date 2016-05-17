@@ -1,0 +1,36 @@
+
+
+
+<div class="container">
+  <div class="hero-unit col-md-9">
+    <h3><%= @post.title %></h3>
+    <p><%= @post.body %></p>
+    <% if current_user == @user %>
+    <a href='' class="glyphicon glyphicon-pencil"></a>
+    <a href='' class="glyphicon glyphicon-remove"></a>
+    <% end %>
+    <small><em><%= @post.created_at %></em></small>
+    <p><%= @post.votes.length %>
+      <form role="form" id="contact-form" class="contact-form" action="/users/<%= current_user.id %>/posts/<%= @post.id %>/vote" method="post">
+        <button class="glyphicon glyphicon-menu-up"></button></form></p>
+
+      </div>
+
+      <div class="hero-unit">
+        <% @post.comments.each do |comment| %>
+        <%= erb :'posts/_comments', layout: false, locals: { comment: comment } %>
+        <% end %>
+      </div>
+
+      <% if current_user %>
+      <br><form role="form" id="contact-form" class="contact-form" action="/users/<%= @user.id %>/posts/<%= @post.id %>/comments" method="post">
+      <div class="form-group">
+        <div class="col-sm-9">
+          <label for="comment">Comment:</label>
+          <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+    <% end %>
+  </div>
